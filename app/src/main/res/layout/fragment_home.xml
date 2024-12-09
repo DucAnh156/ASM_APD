@@ -40,14 +40,7 @@
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"/>
 
-            <ImageButton
-                android:id="@+id/btn_logout"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:src="@drawable/logout_icon" <!-- Thay thế bằng biểu tượng của bạn -->
-            android:background="@null" <!-- Không có nền -->
-            android:contentDescription="@string/logout" <!-- Miêu tả cho người dùng khuyết tật -->
-            android:padding="8dp" />
+            
 
 
         </RelativeLayout>
