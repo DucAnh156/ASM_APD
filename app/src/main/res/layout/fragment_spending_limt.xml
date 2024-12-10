@@ -16,7 +16,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Set Up Expenses"
-            android:textSize="24sp"
+            android:textSize="35sp"
             android:textStyle="bold"
             android:gravity="center"
             android:paddingBottom="16dp"
@@ -125,7 +125,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Save"
-            android:backgroundTint="@color/green"
+            android:backgroundTint="#FFCC33"
             android:textColor="@color/white"
             android:layout_marginTop="10dp" />
 

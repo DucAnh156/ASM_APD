@@ -58,7 +58,6 @@ public class HomeFragment extends Fragment {
 
         btnInformation = view.findViewById(R.id.btn_Information);
 
-        btnLogout = view.findViewById(R.id.btn_logout);
 
         btnNotification = view.findViewById(R.id.btn_Notifacation);
 
@@ -93,7 +92,7 @@ public class HomeFragment extends Fragment {
             // Mở màn hình hiển thị các chi phí đã thêm (DisplayExpensesFragment hoặc Activity)
             openDisplayExpensesScreen();
         });
-        btnLogout.setOnClickListener(v -> logout());
+
 
         recyclerView.setLayoutManager(new LinearLayoutManager(requireContext()));
         categoryAdapter = new CategoryAdapter(requireContext(), new ArrayList<>());
@@ -139,7 +138,7 @@ public class HomeFragment extends Fragment {
         if (user != null && user.moveToFirst()) {
             // Cập nhật lời chào tên người dùng
             @SuppressLint("Range") String userName = user.getString(user.getColumnIndex(DatabaseHelper.COLUMN_USERNAME));
-            tvName.setText("Chào " + userName);
+            tvName.setText("Welcome Back " + userName);
 
             // Cập nhật tên đầy đủ trên thẻ ngân hàng
             @SuppressLint("Range") String fullName = user.getString(user.getColumnIndex(DatabaseHelper.COLUMN_FULL_NAME));

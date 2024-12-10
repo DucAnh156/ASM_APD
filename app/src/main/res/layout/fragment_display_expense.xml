@@ -9,7 +9,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Expense List"
-        android:textSize="20sp"
+        android:textSize="35sp"
         android:gravity="center"
         android:textStyle="bold"
         android:layout_marginBottom="10dp"
@@ -75,9 +75,9 @@
         android:id="@+id/filter_button"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:backgroundTint="@color/teal"
+        android:backgroundTint="#FFCCCC"
         android:textSize="16sp"
-        android:text="Filter" />
+        android:text="Search" />
 
     <ListView
         android:id="@+id/expenseListView"

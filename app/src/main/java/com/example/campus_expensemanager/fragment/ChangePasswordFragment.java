@@ -24,6 +24,7 @@ public class ChangePasswordFragment extends Fragment {
     private Button btnChangePassword;
     private String username;
 
+
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
                              @Nullable Bundle savedInstanceState) {
@@ -33,6 +34,7 @@ public class ChangePasswordFragment extends Fragment {
         etNewPassword = view.findViewById(R.id.et_new_password);
         etConfirmPassword = view.findViewById(R.id.et_confirm_password);
         btnChangePassword = view.findViewById(R.id.btn_change_password);
+
 
         // Lấy username từ Bundle
         if (getArguments() != null) {

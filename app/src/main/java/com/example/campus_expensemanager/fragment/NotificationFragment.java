@@ -36,7 +36,6 @@ public class NotificationFragment extends Fragment {
 
         dbHelper = new DatabaseHelper(requireContext());
         btnMonthlyLimit = view.findViewById(R.id.btn_monthly_limit);
-        btnSpendingChart = view.findViewById(R.id.btn_spending_chart);
 
         if (getArguments() != null) {
             username = getArguments().getString("username");

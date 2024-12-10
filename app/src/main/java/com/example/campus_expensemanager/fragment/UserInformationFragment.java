@@ -1,6 +1,7 @@
 package com.example.campus_expensemanager.fragment;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.database.Cursor;
 import android.os.Bundle;
 import android.view.LayoutInflater;
@@ -14,14 +15,16 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.campus_expensemanager.R;
+import com.example.campus_expensemanager.activity.MainActivity;
 import com.example.campus_expensemanager.database.DatabaseHelper;
 
 public class UserInformationFragment extends Fragment {
 
     private TextView tvFullName, tvEmail, tvUsername, tvPassword, tvPhone, tvAmount;
-    private Button btnChangePassword;
+    private Button btnChangePassword, btnLogout;
     private String username;
 
+    @SuppressLint("MissingInflatedId")
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container,
@@ -36,7 +39,7 @@ public class UserInformationFragment extends Fragment {
         tvPhone = view.findViewById(R.id.tv_phone);
         tvAmount = view.findViewById(R.id.tv_amount);
         btnChangePassword = view.findViewById(R.id.btn_change_password);
-
+        btnLogout = view.findViewById(R.id.btn_logout);
         // Lấy username từ Bundle
         if (getArguments() != null) {
             username = getArguments().getString("username");
@@ -48,6 +51,8 @@ public class UserInformationFragment extends Fragment {
         // Xử lý sự kiện khi người dùng bấm nút Change Password
         btnChangePassword.setOnClickListener(v -> openChangePasswordScreen());
 
+
+        btnLogout.setOnClickListener(v -> logout());
         return view;
     }
 
@@ -82,5 +87,18 @@ public class UserInformationFragment extends Fragment {
                 .replace(R.id.fragment_container, changePasswordFragment)
                 .addToBackStack(null)
                 .commit();
+    }
+    private void logout() {
+        // Xóa thông tin đăng nhập trong SharedPreferences
+        if (getActivity() != null) {
+            getActivity().getSharedPreferences("user_prefs", getActivity().MODE_PRIVATE)
+                    .edit().clear().apply();
+        }
+        // Quay về màn hình đăng nhập
+        // Giả sử bạn có một LoginActivity để xử lý đăng nhập
+        Intent intent = new Intent(getActivity(), MainActivity.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK); // Xóa ngăn xếp và tạo mới
+        startActivity(intent);
+        getActivity().finish(); // Kết thúc HomeActivity hoặc màn hình hiện tại
     }
 }

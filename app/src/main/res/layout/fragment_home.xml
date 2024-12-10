@@ -22,7 +22,7 @@
             <ImageView
                 android:id="@+id/icon_x"
                 android:layout_alignParentStart="true"
-                android:src="@drawable/icon_x"
+                android:src="@drawable/logo_btec"
                 android:layout_width="30dp"
                 android:layout_height="30dp"/>
 
@@ -33,14 +33,14 @@
                 android:id="@+id/tv_name"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Jane Nguyen"
+                android:text="Duc Anh Do"
                 android:textColor="@android:color/black"
                 android:textSize="15sp"
                 android:layout_toEndOf="@id/icon_x"
                 android:layout_marginStart="10dp"
                 android:layout_centerVertical="true"/>
 
-            
+
 
 
         </RelativeLayout>
@@ -51,13 +51,14 @@
             android:layout_margin="10dp">
 
 
-            <!-- Nút Chỉnh sửa Card -->
+
             <Button
                 android:id="@+id/btn_Information"
                 android:layout_width="0dp"
                 android:textSize="10sp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/blue"
                 android:layout_weight="1"
                 android:text="Information"
                 android:textColor="@android:color/white" />
@@ -67,22 +68,13 @@
                 android:layout_width="0dp"
                 android:textSize="10sp"
                 android:layout_weight="1"
+                android:backgroundTint="@color/blue"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
                 android:text="Notification"
                 android:textColor="@android:color/white"
                  />
 
-            <!-- Nút Xóa Card -->
-            <Button
-                android:id="@+id/btn_logout"
-                android:layout_width="0dp"
-                android:layout_weight="1"
-                android:textSize="10sp"
-                android:layout_height="wrap_content"
-                android:text="Logout"
-                android:textColor="@android:color/white"
-                 />
         </LinearLayout>
         <LinearLayout
             android:layout_margin="10dp"
@@ -129,6 +121,7 @@
                 android:layout_weight="1"
                 android:textSize="13sp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
                 android:layout_marginEnd="8dp"
                 android:text="Add Category"
                 android:textColor="@android:color/white"
@@ -142,6 +135,7 @@
                 android:textSize="13sp"
                 android:layout_height="wrap_content"
                 android:layout_marginEnd="8dp"
+                android:backgroundTint="@color/blue"
                 android:text="Add Expense"
                 android:textColor="@android:color/white"
                 />
@@ -154,6 +148,7 @@
                 android:layout_weight="1"
                 android:textSize="13sp"
                 android:layout_height="wrap_content"
+                android:backgroundTint="@color/blue"
                 android:layout_marginEnd="8dp"
                 android:text="Display expense"
                 android:textColor="@android:color/white"
@@ -406,11 +401,9 @@
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_categories"
             android:layout_width="match_parent"
+            android:backgroundTint="@color/blue"
             android:layout_height="wrap_content" />
 
     </LinearLayout>
-
-
-
 
 </androidx.core.widget.NestedScrollView>

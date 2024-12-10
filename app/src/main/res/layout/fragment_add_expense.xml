@@ -9,8 +9,8 @@
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:text="Add New Expense"
-        android:textSize="20sp"
+        android:text="New Expense"
+        android:textSize="35sp"
         android:textStyle="bold"
         android:gravity="center"
         android:paddingBottom="16dp"
@@ -65,7 +65,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Add Expense"
-        android:backgroundTint="#4CAF50"
+        android:backgroundTint="#FFCCCC"
         android:textColor="#FFFFFF"
         android:padding="12dp"
         android:layout_marginBottom="8dp" />
@@ -76,7 +76,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Display Expense"
-        android:backgroundTint="#2196F3"
+        android:backgroundTint="#00CCCC"
         android:textColor="#FFFFFF"
         android:padding="12dp" />
 </LinearLayout>

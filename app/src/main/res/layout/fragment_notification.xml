@@ -12,7 +12,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Notification"
-        android:textSize="24sp"
+        android:textSize="50sp"
         android:textStyle="bold"
         android:textColor="@color/black"
         android:layout_gravity="center"
@@ -24,20 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Spending limit"
-        android:backgroundTint="@color/green"
+        android:backgroundTint="#6699FF"
         android:textColor="@color/white"
         android:layout_marginBottom="12dp" />
-
-    <!-- Nút biểu đồ chi tiêu -->
-    <Button
-        android:id="@+id/btn_spending_chart"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="Spending chart"
-        android:backgroundTint="@color/teal"
-        android:textColor="@color/white"
-        android:layout_marginBottom="16dp" />
-
     <!-- Danh sách thông báo -->
     <TextView
         android:id="@+id/tv_notifications_header"
