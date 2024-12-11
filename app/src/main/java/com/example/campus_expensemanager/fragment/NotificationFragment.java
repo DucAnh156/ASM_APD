@@ -47,10 +47,6 @@ public class NotificationFragment extends Fragment {
         });
 
 
-        btnSpendingChart.setOnClickListener(v -> {
-            ViewSpendingChartScreen();
-        });
-
 
         return view;
     }

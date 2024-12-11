@@ -16,7 +16,6 @@ import androidx.fragment.app.Fragment;
 import com.example.campus_expensemanager.R;
 import com.example.campus_expensemanager.database.DatabaseHelper;
 
-import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.GregorianCalendar;
@@ -36,25 +35,36 @@ public class AddCategoryFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_add_category, container, false);
 
-
+        // Khởi tạo cơ sở dữ liệu
         dbHelper = new DatabaseHelper(getContext());
-        // Initialize views
+
+        // Khởi tạo các view
+        initializeViews(view);
+
+        // Lấy tên người dùng từ arguments
+        retrieveUsernameFromArguments();
+
+        // Thiết lập bộ chọn ngày cho trường nhập ngày
+        setupDatePicker(etCategoryDate);
+
+        // Thiết lập sự kiện click cho nút thêm
+        setupAddButtonClickListener();
+
+        return view;
+    }
+
+    private void initializeViews(View view) {
         etCategoryName = view.findViewById(R.id.et_category_name);
         etCategoryDescription = view.findViewById(R.id.et_category_description);
         etCategoryDate = view.findViewById(R.id.et_category_date);
         btnAdd = view.findViewById(R.id.btn_add);
         calendar = Calendar.getInstance();
+    }
 
+    private void retrieveUsernameFromArguments() {
         if (getArguments() != null) {
             username = getArguments().getString("username");
         }
-
-        setupDatePicker(etCategoryDate);
-
-        // Set click listener for Add button
-        btnAdd.setOnClickListener(v -> addCategory());
-
-        return view;
     }
 
     private void setupDatePicker(EditText editText) {
@@ -62,7 +72,7 @@ public class AddCategoryFragment extends Fragment {
             DatePickerDialog datePickerDialog = new DatePickerDialog(
                     requireContext(),
                     (view, year, month, dayOfMonth) -> {
-                        // Format the selected date
+                        // Định dạng ngày đã chọn
                         String formattedDate = new SimpleDateFormat("dd/MM/yyyy", Locale.getDefault())
                                 .format(new GregorianCalendar(year, month, dayOfMonth).getTime());
                         editText.setText(formattedDate);
@@ -75,50 +85,60 @@ public class AddCategoryFragment extends Fragment {
         });
     }
 
+    private void setupAddButtonClickListener() {
+        btnAdd.setOnClickListener(v -> addCategory());
+    }
+
     private void addCategory() {
+        // Lấy thông tin từ các trường nhập
         String name = etCategoryName.getText().toString().trim();
         String description = etCategoryDescription.getText().toString().trim();
-        String date = etCategoryDate.getText().toString().trim();  // Optional date field
+        String date = etCategoryDate.getText().toString().trim(); // Trường ngày tùy chọn
 
-        // Validate if category name and description are provided
-        if (name.isEmpty()) {
-            Toast.makeText(getActivity(), "Category name cannot be empty", Toast.LENGTH_SHORT).show();
-            return;
-        }
+        // Kiểm tra tính hợp lệ của tên danh mục và mô tả
+        if (!validateInputs(name, description, date)) return;
 
-        if (description.isEmpty()) {
-            Toast.makeText(getActivity(), "Category description cannot be empty", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-        // If date is required, check if it is empty
-        if (date.isEmpty()) {
-            Toast.makeText(getActivity(), "Please enter a date for the category", Toast.LENGTH_SHORT).show();
-            return;
-        }
-
-
+        // Kiểm tra xem danh mục đã tồn tại chưa
         if (dbHelper.isCategoryExists(username, name)) {
-            Toast.makeText(getActivity(), "Category already exists. Please choose a different name.", Toast.LENGTH_SHORT).show();
-            etCategoryName.setText("");
-            etCategoryDescription.setText("");
-            etCategoryDate.setText("");
+            showToast("Category already exists. Please choose a different name.");
+            clearInputFields();
             return;
         }
 
-        // Add category to database
-        boolean isInserted = dbHelper.addCategory(username, name, description, date);
-
-        if (isInserted) {
-            Toast.makeText(getActivity(), "Category added successfully", Toast.LENGTH_SHORT).show();
-            // Clear the input fields after successful addition
-            etCategoryName.setText("");
-            etCategoryDescription.setText("");
-            etCategoryDate.setText(""); // Clear date field if it's added
-            // Go back to the previous fragment
+        // Thêm danh mục vào cơ sở dữ liệu
+        if (dbHelper.addCategory(username, name, description, date)) {
+            showToast("Category added successfully");
+            clearInputFields();
+            // Quay lại fragment trước đó
             getParentFragmentManager().popBackStack();
         } else {
-            Toast.makeText(getActivity(), "Failed to add category", Toast.LENGTH_SHORT).show();
+            showToast("Failed to add category");
         }
+    }
+
+    private boolean validateInputs(String name, String description, String date) {
+        if (name.isEmpty()) {
+            showToast("Category name cannot be empty");
+            return false;
+        }
+        if (description.isEmpty()) {
+            showToast("Category description cannot be empty");
+            return false;
+        }
+        if (date.isEmpty()) {
+            showToast("Please enter a date for the category");
+            return false;
+        }
+        return true;
+    }
+
+    private void showToast(String message) {
+        Toast.makeText(getActivity(), message, Toast.LENGTH_SHORT).show();
+    }
+
+    private void clearInputFields() {
+        etCategoryName.setText("");
+        etCategoryDescription.setText("");
+        etCategoryDate.setText(""); // Xóa trường ngày nếu đã thêm
     }
 }
